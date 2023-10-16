@@ -21,9 +21,11 @@ let operation = champtexte.value
 
 let nombre = '0123456789'.split('')
 let operateur = '-+/x'.split('')
+let ponctuation = '.'
 
 function resultat(){
-    champtexte.value = eval(champtexte.value)
+    console.log(operation)
+    champtexte.value = eval(operation)
     operation = 0
 }
 
@@ -37,7 +39,13 @@ function autorisation(valeur){
             return true}
         else {console.log(operation, "l'operateur est bon" )
             return true }
-    }}
+    }
+    if (ponctuation.includes(valeur) && nombre.includes(operateur.includes(operation[operation.length-1]))){
+        return true
+    }
+
+}
+
 
 function boutonNum(valeur){
     if (autorisation(valeur)){
@@ -45,10 +53,16 @@ function boutonNum(valeur){
             operation = valeur
         }
         else {
-        operation += valeur}
+            if (valeur == 'x') {
+                operation += '*'
+            } else {
+                operation += valeur
+            }
+
+        }
         champtexte.value = operation
 
-}
+}}
 function reset(){
     operation = '0'
     champtexte.value= operation}
@@ -78,16 +92,19 @@ plus.addEventListener('click',()=>{boutonNum('+')})
 
 const codeHexadecimal = "0123456789ABCDEF".split('')
 function random(){
-    let nb_random = ''
-    for (let k = 0 ; k<6; ++k){nb_random += codeHexadecimal[Math.floor(Math.random()*codeHexadecimal.length)]}
-    return nb_random
+
 }
 
 let rond = document.querySelector(".rondCouleur")
+
 let btn_couleur = document.querySelector(".changerColeur")
 
 function changer_couleur(){
-    const couleur = random()
-    rond.style.backgroundColor="#"+couleur }
+    let couleur = ''
+    for (let k = 0 ; k<6; ++k){couleur += codeHexadecimal[Math.floor(Math.random()*codeHexadecimal.length)]}
+    rond.style.backgroundColor="#"+couleur
+    ac.style.backgroundColor="#"+couleur
+}
 
+setInterval(changer_couleur,1500)
 btn_couleur.addEventListener('click', ()=>{changer_couleur()})
