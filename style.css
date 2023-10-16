@@ -23,3 +23,16 @@
 .champsDeTexte{
     text-overflow :ellipsis ;
 }
+
+.carre{
+    width: 80px;
+    height: 50px;
+}
+
+.carres {
+    width: 30vw;
+}
+
+.reset{
+    background-color: #C7ACE7;
+}

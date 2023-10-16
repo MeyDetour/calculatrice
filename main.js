@@ -96,15 +96,16 @@ function random(){
 }
 
 let rond = document.querySelector(".rondCouleur")
-
+let espace_carrer = document.querySelector(".carres")
 let btn_couleur = document.querySelector(".changerColeur")
 
 function changer_couleur(){
     let couleur = ''
     for (let k = 0 ; k<6; ++k){couleur += codeHexadecimal[Math.floor(Math.random()*codeHexadecimal.length)]}
     rond.style.backgroundColor="#"+couleur
-    ac.style.backgroundColor="#"+couleur
+
+    espace_carrer.innerHTML+= (" <div class='mb-4 d-flex flex-column '> <div class='carre m-1' style='background-color: #" + couleur + " '></div> <span> #" +couleur +"</span> </div>" )
 }
 
-setInterval(changer_couleur,1500)
+setInterval(changer_couleur,1000)
 btn_couleur.addEventListener('click', ()=>{changer_couleur()})
