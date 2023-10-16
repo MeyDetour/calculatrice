@@ -1,53 +1,85 @@
-let champtexte = document.querySelector(".champsDeTexte")
-let  ac = document.querySelector(".reset")
-let  zero  = document.querySelector(".zero")
-let  sept = document.querySelector(".sept")
-let  huit = document.querySelector(".huit")
-let neuf  = document.querySelector(".neuf")
-let  quatre = document.querySelector(".quatre")
-let  cinq = document.querySelector(".cinq")
-let  six = document.querySelector(".six")
-let  un = document.querySelector(".un")
-let  deux = document.querySelector(".deux")
-let  trois = document.querySelector(".trois")
-let  division = document.querySelector(".diviser")
-let  multip = document.querySelector(".fois")
-let  moins = document.querySelector(".moins")
-let  egal = document.querySelector(".egal")
-let  plus = document.querySelector(".plus")
+const champtexte = document.querySelector(".champsDeTexte")
+const  ac = document.querySelector(".reset")
+const  zero  = document.querySelector(".zero")
+const  sept = document.querySelector(".sept")
+const  huit = document.querySelector(".huit")
+const neuf  = document.querySelector(".neuf")
+const  quatre = document.querySelector(".quatre")
+const  cinq = document.querySelector(".cinq")
+const  six = document.querySelector(".six")
+const  un = document.querySelector(".un")
+const  deux = document.querySelector(".deux")
+const  trois = document.querySelector(".trois")
+const  division = document.querySelector(".diviser")
+const  multip = document.querySelector(".fois")
+const  moins = document.querySelector(".moins")
+const  egal = document.querySelector(".egal")
+const  plus = document.querySelector(".plus")
+const  point = document.querySelector(".point")
 
+let operation = champtexte.value
+
+let nombre = '0123456789'.split('')
+let operateur = '-+/x'.split('')
 
 function resultat(){
-
+    champtexte.value = eval(champtexte.value)
+    operation = 0
 }
 
-un.addEventListener('click',()=>{champtexte.value +=  '1'})
-deux.addEventListener('click',()=>{champtexte.value +=  '2'})
-trois.addEventListener('click',()=>{champtexte.value +=  '3'})
-quatre.addEventListener('click',()=>{champtexte.value +=  '4'})
-cinq.addEventListener('click',()=>{champtexte.value +=  '5'})
-six.addEventListener('click',()=>{champtexte.value +=  '6'})
-sept.addEventListener('click',()=>{champtexte.value +=  '7'})
-huit.addEventListener('click',()=>{champtexte.value +=  '8'})
-neuf.addEventListener('click',()=>{champtexte.value +=  '9'})
-zero.addEventListener('click',()=>{champtexte.value +=  '0'})
+function autorisation(valeur){
+    if(nombre.includes(valeur)){
+        return true
+    }
+    if (operateur.includes(valeur)){
+        if(operateur.includes(operation[operation.length-1])){
+            operation = operation.slice(0,operation.length-1)
+            return true}
+        else {console.log(operation, "l'operateur est bon" )
+            return true }
+    }}
 
-ac.addEventListener('click',()=>{champtexte.value =  ''})
-division.addEventListener('click',()=>{champtexte.value +=  ' / '})
-multip.addEventListener('click',()=>{champtexte.value +=  ' x '})
-moins.addEventListener('click',()=>{champtexte.value +=  ' - '})
+function boutonNum(valeur){
+    if (autorisation(valeur)){
+        if (operation == 0){
+            operation = valeur
+        }
+        else {
+        operation += valeur}
+        champtexte.value = operation
+
+}
+function reset(){
+    operation = '0'
+    champtexte.value= operation}
+
+un.addEventListener('click',()=>{boutonNum('1')})
+deux.addEventListener('click',()=>{boutonNum('2')})
+trois.addEventListener('click',()=>{boutonNum('3')})
+quatre.addEventListener('click',()=>{boutonNum('4')})
+cinq.addEventListener('click',()=>{boutonNum('5')})
+six.addEventListener('click',()=>{boutonNum('6')})
+sept.addEventListener('click',()=>{boutonNum('7')})
+huit.addEventListener('click',()=>{boutonNum('8')})
+neuf.addEventListener('click',()=>{boutonNum('9')})
+zero.addEventListener('click',()=>{boutonNum('0')})
+
+ac.addEventListener('click', reset )
+division.addEventListener('click',()=>{boutonNum('/')})
+multip.addEventListener('click',()=>{boutonNum('x')})
+moins.addEventListener('click',()=>{boutonNum('-')})
 egal.addEventListener('click',resultat)
-plus.addEventListener('click',()=>{champtexte.value +=  ' + '})
+plus.addEventListener('click',()=>{boutonNum('+')})
 
 
 
 
 
 
-const codeHexadecimal = "0123456789ABCDEF".split('');
+const codeHexadecimal = "0123456789ABCDEF".split('')
 function random(){
     let nb_random = ''
-    for (let k = 0 ; k<6; ++k){nb_random += codeHexadecimal[Math.floor(Math.random()*  codeHexadecimal.length)]  }
+    for (let k = 0 ; k<6; ++k){nb_random += codeHexadecimal[Math.floor(Math.random()*codeHexadecimal.length)]}
     return nb_random
 }
 
@@ -56,8 +88,6 @@ let btn_couleur = document.querySelector(".changerColeur")
 
 function changer_couleur(){
     const couleur = random()
-    rond.style.backgroundColor="#"+couleur
-}
+    rond.style.backgroundColor="#"+couleur }
 
-btn_couleur.addEventListener('click', changer_couleur)
-
+btn_couleur.addEventListener('click', ()=>{changer_couleur()})
