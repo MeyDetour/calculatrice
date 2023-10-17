@@ -103,8 +103,11 @@ function changer_couleur(){
     let couleur = ''
     for (let k = 0 ; k<6; ++k){couleur += codeHexadecimal[Math.floor(Math.random()*codeHexadecimal.length)]}
     rond.style.backgroundColor="#"+couleur
-
     espace_carrer.innerHTML+= (" <div class='mb-4 d-flex flex-column '> <div class='carre m-1' style='background-color: #" + couleur + " '></div> <span> #" +couleur +"</span> </div>" )
+    rond.style.height = Math.floor(Math.random() * 270  )+30 +"px"
+    rond.style.width = Math.floor(Math.random() * 270) +30+"px"
+    rond.style.borderRadius = Math.floor(Math.random() * 40)+10 + "%"
+
 }
 
 setInterval(changer_couleur,1000)
