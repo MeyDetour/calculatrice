@@ -104,7 +104,7 @@ let dateAvant = new Date().getTime()
 
 
 function changer_couleur(){
-    dateAvant = new Date().getTime()
+
     let couleur = ''
     for (let k = 0 ; k<6; ++k){couleur += codeHexadecimal[Math.floor(Math.random()*codeHexadecimal.length)]}
     rond.style.backgroundColor="#"+couleur
@@ -114,6 +114,7 @@ function changer_couleur(){
     rond.style.borderRadius = Math.floor(Math.random() * 40)+10 + "%"
     rond.style.top = Math.floor(Math.random() * 80 )+10 + "%"
     rond.style.left = Math.floor(Math.random() * 80 )+10 + "%"
+    dateAvant = new Date().getTime()
 
 }
 
