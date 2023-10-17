@@ -91,9 +91,6 @@ plus.addEventListener('click',()=>{boutonNum('+')})
 
 
 const codeHexadecimal = "0123456789ABCDEF".split('')
-function random(){
-
-}
 
 let rond = document.querySelector(".rondCouleur")
 let espace_carrer = document.querySelector(".carres")
@@ -122,5 +119,5 @@ function changer_couleur(){
 rond.addEventListener('click', ()=>{
     dateInstant = new Date().getTime()
     temps =  dateInstant- dateAvant
-    affichageTemps.innerHTML =temps
+    affichageTemps.innerHTML = temps/1000
     setTimeout(changer_couleur,1000)})
