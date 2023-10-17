@@ -97,9 +97,14 @@ function random(){
 
 let rond = document.querySelector(".rondCouleur")
 let espace_carrer = document.querySelector(".carres")
-let btn_couleur = document.querySelector(".changerColeur")
+let affichageTemps = document.querySelector('.temps')
+let temps  = 0
+affichageTemps.innerHTML += ("voici le temps :" + temps )
+let dateAvant = new Date().getTime()
+
 
 function changer_couleur(){
+    dateAvant = new Date().getTime()
     let couleur = ''
     for (let k = 0 ; k<6; ++k){couleur += codeHexadecimal[Math.floor(Math.random()*codeHexadecimal.length)]}
     rond.style.backgroundColor="#"+couleur
@@ -107,8 +112,14 @@ function changer_couleur(){
     rond.style.height = Math.floor(Math.random() * 270  )+30 +"px"
     rond.style.width = Math.floor(Math.random() * 270) +30+"px"
     rond.style.borderRadius = Math.floor(Math.random() * 40)+10 + "%"
+    rond.style.top = Math.floor(Math.random() * 80 )+10 + "%"
+    rond.style.left = Math.floor(Math.random() * 80 )+10 + "%"
 
 }
 
-setInterval(changer_couleur,1000)
-btn_couleur.addEventListener('click', ()=>{changer_couleur()})
+//setInterval(changer_couleur,1000)
+rond.addEventListener('click', ()=>{
+    dateInstant = new Date().getTime()
+    temps =  dateInstant- dateAvant
+    affichageTemps.innerHTML =temps
+    setTimeout(changer_couleur,1000)})
